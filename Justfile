@@ -16,6 +16,7 @@ sub-update:
   git submodule update --init --recursive
 
 # git submodule - repo URL + optional local folder name
+# e.g. just sub-add https://github.com/ironicbadger/ansible-role-caddy.git ironicbadger.caddy
 sub-add URL *NAME:
     #!/usr/bin/env sh
     if [ -z "{{NAME}}" ]; then

@@ -1,0 +1,29 @@
+services:
+
+  ndls-blog:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    container_name: ndls-blog
+    ports:
+      - 2368:2368
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: ndls-blog-db
+      database__connection__user: "{{ ndls_blog_db_user }}"
+      database__connection__password: "{{ ndls_blog_db_password }}"
+      database__connection__database: "{{ ndls_blog_db_database }}"
+      # this url value is just an example, and is likely wrong for your environment!
+      url: http://100.80.134.92:2368/
+      #NODE_ENV: development
+    volumes:
+      - /home/wiki/appdata/data/ndls-blog-ghost:/var/lib/ghost/content
+
+  ndls-blog-db:
+    image: mysql:8.4
+    restart: unless-stopped
+    container_name: ndls-blog-db
+    environment:
+      MYSQL_ROOT_PASSWORD: "{{ ndls_blog_db_password }}"
+    volumes:
+      - /home/wiki/appdata/data/ndls-blog-db:/var/lib/mysql
