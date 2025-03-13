@@ -14,4 +14,4 @@ caddy_endpoints:
     wildcard_endpoints:
       - friendly_name: blog
         fqdn: blog.ndls.ca
-        upstream: http://100.80.134.92:2368/
+        upstream: http://100.80.134.92:2368
