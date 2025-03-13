@@ -1,0 +1,9 @@
+---
+
+  - hosts: frontdoor
+    vars_files:
+    - 'group_vars/secrets.yaml'
+    roles:
+      - role: ironicbadger.figurine
+      - role: ironicbadger.caddy
+        tags: caddy

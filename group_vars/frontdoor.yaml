@@ -1,0 +1,17 @@
+# ironicbadger.figurine
+figurine_name: ndls-tunnel-frontdoor
+
+# ironicbadger.caddy
+caddy_tls_providers:
+  - provider: cloudflare
+    challenge_type: dns
+    provider_api_token: "{{ cloudflare_token_caddy_frontdoor }}"
+    resolver_ip: 1.1.1.1
+caddy_endpoints:
+  - friendly_name: wildcard for *.ndls.ca
+    fqdn: '*.ndls.ca'
+    tls_provider: cloudflare
+    wildcard_endpoints:
+      - friendly_name: blog
+        fqdn: blog.ndls.ca
+        upstream: http://100.80.134.92:2368/
